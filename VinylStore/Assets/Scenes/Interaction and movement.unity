@@ -447,6 +447,8 @@ GameObject:
   - component: {fileID: 536243451}
   - component: {fileID: 536243450}
   - component: {fileID: 536243449}
+  - component: {fileID: 536243453}
+  - component: {fileID: 536243454}
   m_Layer: 0
   m_Name: NPC
   m_TagString: Untagged
@@ -587,6 +589,34 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &536243453
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 536243448}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69ac264cc6980ec4a8e2fd1aa632dcb0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pathfinding: {fileID: 785181498}
+  speed: 3
+--- !u!114 &536243454
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 536243448}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e77243af90d3eba478cc1340e16e1067, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  npc: {fileID: 536243453}
+  targetPosition: {x: 3, y: 3}
 --- !u!1 &582026668
 GameObject:
   m_ObjectHideFlags: 0
@@ -1018,6 +1048,8 @@ GameObject:
   m_Component:
   - component: {fileID: 785181497}
   - component: {fileID: 785181496}
+  - component: {fileID: 785181499}
+  - component: {fileID: 785181498}
   m_Layer: 0
   m_Name: Grid
   m_TagString: Untagged
@@ -1057,6 +1089,35 @@ Transform:
   - {fileID: 1637222875}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &785181498
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 785181495}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da6f2ecf7351f39418ab4ca0cf2b35c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &785181499
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 785181495}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 96bb122f780cc814c8426f2659643550, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  obstacleMask:
+    serializedVersion: 2
+    m_Bits: 8
+  gridWorldSize: {x: 50, y: 50}
+  nodeRadius: 0.5
 --- !u!1 &824085021
 GameObject:
   m_ObjectHideFlags: 0
@@ -1115,7 +1176,7 @@ GameObject:
   - component: {fileID: 824395963}
   - component: {fileID: 824395962}
   - component: {fileID: 824395961}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Collision
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1243,8 +1304,8 @@ TilemapRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1747135687
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
@@ -1264,15 +1325,39 @@ Tilemap:
   m_Enabled: 1
   m_Tiles: {}
   m_AnimatedTiles: {}
-  m_TileAssetArray: []
-  m_TileSpriteArray: []
-  m_TileMatrixArray: []
-  m_TileColorArray: []
+  m_TileAssetArray:
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
+  m_TileSpriteArray:
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
+  m_TileMatrixArray:
+  - m_RefCount: 0
+    m_Data:
+      e00: 1e-45
+      e01: 0
+      e02: 1e-45
+      e03: 2.1006438e-19
+      e10: 0
+      e11: 0
+      e12: 0
+      e13: 4.76e-43
+      e20: 0.0000998372
+      e21: 2.1006438e-19
+      e22: 2.4068716e+29
+      e23: -6.703581e-18
+      e30: 4.5912e-41
+      e31: 4.76e-43
+      e32: 4.79e-43
+      e33: 4.76e-43
+  m_TileColorArray:
+  - m_RefCount: 0
+    m_Data: {r: 7.4552e-41, g: 7.4552e-41, b: 7.4552e-41, a: 7.4552e-41}
   m_TileObjectToInstantiateArray: []
   m_AnimationFrameRate: 1
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Origin: {x: 0, y: 0, z: 0}
-  m_Size: {x: 0, y: 0, z: 1}
+  m_Size: {x: 2, y: 4, z: 1}
   m_TileAnchor: {x: 0.5, y: 0.5, z: 0}
   m_TileOrientation: 0
   m_TileOrientationMatrix:
