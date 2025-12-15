@@ -1,23 +1,45 @@
 using UnityEngine;
 
+// Clase esencial para el algoritmo A* con todas las propiedades requeridas
 public class Node
 {
+    // --- PROPIEDADES DE LA CUADRÍCULA (Requeridas por GridAStar.cs) ---
+
+    // Indica si el nodo puede ser atravesado
     public bool walkable;
-    public Vector2 worldPosition;
+
+    // Posición del mundo (centro del nodo)
+    public Vector3 worldPosition;
+
+    // Índices de la posición del nodo dentro del array 2D de la cuadrícula
     public int gridX;
     public int gridY;
 
-    public int gCost;
-    public int hCost;
-    public Node parent;
+    // --- PROPIEDADES DE COSTE DE A* (Requeridas por AStarPathfinding.cs) ---
 
-    public int fCost => gCost + hCost;
+    public int gCost; // Costo desde el nodo inicial
+    public int hCost; // Costo heurístico hasta el nodo final
+    public Node parent; // Nodo anterior en el camino
 
-    public Node(bool _walkable, Vector2 _worldPos, int x, int y)
+    // Propiedad calculada: fCost = gCost + hCost
+    public int fCost
+    {
+        get { return gCost + hCost; }
+    }
+
+    // Constructor que toma 4 argumentos (Requerido por GridAStar.cs:45)
+    public Node(bool _walkable, Vector3 _worldPos, int _gridX, int _gridY)
     {
         walkable = _walkable;
         worldPosition = _worldPos;
-        gridX = x;
-        gridY = y;
+        gridX = _gridX;
+        gridY = _gridY;
+    }
+
+    // Constructor vacío (Requerido por NPCMovement.cs)
+    public Node()
+    {
+        // Constructor vacío para permitir crear un nodo solo con la posición,
+        // como se hace en NPCMovement para el destino final.
     }
 }
